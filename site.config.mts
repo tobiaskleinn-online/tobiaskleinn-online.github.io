@@ -8,14 +8,14 @@ export interface SocialLink {
 }
 
 export default {
-	title: 'SR',
+	title: 'TK',
 	favicon: 'favicon.ico',
-	owner: 'Sara Richard',
+	owner: 'Tobias Klein',
 	profileImage: 'profile.webp',
 	socialLinks: [
 		{
 			name: 'GitHub',
-			url: 'https://github.com/rockem/astro-photography-portfolio',
+			url: 'https://tobiaskleinn-online.github.io/website/',
 			icon: Github,
 		} as SocialLink,
 		{
