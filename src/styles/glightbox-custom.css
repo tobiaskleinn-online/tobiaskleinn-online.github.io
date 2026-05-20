@@ -5,8 +5,16 @@
 	width: auto;
 	object-fit: contain;
 	display: block;
-	border: 16px solid white;
+	border: 12px solid white;
 	border-radius: 4px;
+}
+
+/* Thinner border on mobile */
+@media (max-width: 768px) {
+	.glightbox-container .gslide-image img {
+		border: 4px solid white;
+		border-radius: 2px;
+	}
 }
 
 .glightbox-container .gslide {
