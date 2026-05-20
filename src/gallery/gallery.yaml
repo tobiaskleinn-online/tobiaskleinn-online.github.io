@@ -6,6 +6,47 @@ collections:
   - id: street
     name: Street
 images:
+  - path: nature/DSC00792.jpg
+    meta:
+      title: Nature scene X
+      description: animal foto.
+      collections:
+        - nature
+        - featured
+    exif: {}
+  - path: nature/DSC02045.jpg
+    meta:
+      title: Nature scene X
+      description: animal foto.
+      collections:
+        - nature
+        - featured
+    exif: {}
+  - path: nature/DSC02089.jpg
+    meta:
+      title: Nature scene X
+      description: animal foto.
+      collections:
+        - nature
+        - featured
+    exif: {}
+  - path: nature/DSC06297.jpg
+    meta:
+      title: Nature scene X
+      description: animal foto.
+      collections:
+        - nature
+        - featured
+    exif: {}
+  - path: nature/DSC06501.jpg
+    meta:
+      title: Nature scene X
+      description: animal foto.
+      collections:
+        - nature
+        - featured
+    exif: {}
+  
   - path: nature/nature-2.jpg
     meta:
       title: Nature scene 2
