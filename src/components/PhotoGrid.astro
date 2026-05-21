@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { images } = Astro.props;
+
 ---
 
 <section id="photo-grid" class="relative w-full mx-auto overflow-hidden">
@@ -19,7 +20,14 @@ const { images } = Astro.props;
 				class="photo-item glightbox absolute transition-transform hover:scale-[1.02] hover:z-10"
 				data-gallery="gallery1"
 				data-type="image"
-				data-glightbox={image.description ? `title: ${image.description}` : undefined}
+				data-glightbox={`title: ${image.title}; description: ${[
+					image.description,
+					image.exif?.model,
+					image.exif?.focalLength ? `${image.exif.focalLength}mm` : null,
+					image.exif?.fNumber ? `f/${image.exif.fNumber}` : null,
+					image.exif?.shutterSpeed ? `1/${image.exif.shutterSpeed}s` : null,
+					image.exif?.iso ? `ISO ${image.exif.iso}` : null,
+				].filter(Boolean).join(' · ')}`}
 			>
 				<Image
 					src={image.src}

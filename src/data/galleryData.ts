@@ -80,6 +80,8 @@ export interface Image {
 	title: string;
 	description: string;
 	collections: string[];
+	exif?: ImageExif;
+
 }
 
 /**

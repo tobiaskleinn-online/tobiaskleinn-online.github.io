@@ -28,3 +28,28 @@
 	color: #ccc;
 	font-size: 0.875rem;
 }
+/* Mobile description styling */
+.glightbox-mobile .gslide-description {
+	background: transparent !important;
+	position: absolute !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+}
+
+.glightbox-mobile .gdesc-inner {
+	background: rgba(0, 0, 0, 0.5) !important;
+	padding: 8px 12px !important;
+}
+
+.glightbox-mobile .gslide-title {
+	color: white !important;
+	font-size: 0.85rem !important;
+	margin: 0 !important;
+}
+
+.glightbox-mobile .gslide-desc {
+	color: #ccc !important;
+	font-size: 0.75rem !important;
+	margin: 0 !important;
+}
