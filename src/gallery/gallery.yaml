@@ -5,6 +5,8 @@ collections:
     name: Travel
   - id: street
     name: Street
+  - id: mountains
+    name: Mountains
 images:
   - path: nature/DSC02045.jpg
     meta:
@@ -54,7 +56,7 @@ images:
   - path: nature/DSC06501.jpg
     meta:
       title: Nature scene X
-      description: animal foto.
+      description: null
       collections:
         - nature
         - featured
@@ -344,3 +346,297 @@ images:
       model: ILCE-6700
       shutterSpeed: 800
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: nature/DSC00019.jpg
+    meta:
+      title: Dsc00019
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-09-20T15:23:13.000Z
+      fNumber: 9
+      focalLength: 18
+      iso: 640
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: nature/DSC00163.jpg
+    meta:
+      title: Dsc00163
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-11-02T13:01:03.000Z
+      fNumber: 6.3
+      focalLength: 350
+      iso: 1600
+      model: ILCE-6700
+      shutterSpeed: 1600
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: nature/DSC01880.jpg
+    meta:
+      title: Dsc01880
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2026-03-26T16:04:38.000Z
+      fNumber: 6.3
+      focalLength: 350
+      iso: 1600
+      model: ILCE-6700
+      shutterSpeed: 500
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: nature/DSC02069.jpg
+    meta:
+      title: Dsc02069
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2026-03-26T17:07:19.000Z
+      fNumber: 6.3
+      focalLength: 203
+      iso: 1600
+      model: ILCE-6700
+      shutterSpeed: 50
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: nature/DSC05574.jpg
+    meta:
+      title: Dsc05574
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-04-28T13:38:00.000Z
+      fNumber: 6.3
+      focalLength: 350
+      iso: 500
+      model: ILCE-6700
+      shutterSpeed: 1250
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: nature/DSC06297-Verbessert-RR.jpg
+    meta:
+      title: Dsc06297 Verbessert Rr
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-05-11T17:06:27.000Z
+      fNumber: 6.3
+      focalLength: 350
+      iso: 6400
+      model: ILCE-6700
+      shutterSpeed: 125
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: nature/DSC06501-Verbessert-RR.jpg
+    meta:
+      title: Dsc06501 Verbessert Rr
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-05-20T17:29:43.000Z
+      fNumber: 6.3
+      focalLength: 350
+      iso: 2500
+      model: ILCE-6700
+      shutterSpeed: 1250
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: nature/DSC08047.jpg
+    meta:
+      title: Dsc08047
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-06-19T18:20:33.000Z
+      fNumber: 8
+      focalLength: 50
+      iso: 1600
+      model: ILCE-6700
+      shutterSpeed: 250
+      lensModel: FE 50mm F2.8 Macro
+  - path: nature/DSC09987.jpg
+    meta:
+      title: Dsc09987
+      description: ''
+      collections:
+        - nature
+    exif:
+      captureDate: 2025-09-20T15:16:24.000Z
+      fNumber: 7.1
+      focalLength: 50
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: street/DSC00747.jpg
+    meta:
+      title: Dsc00747
+      description: ''
+      collections:
+        - street
+    exif:
+      captureDate: 2025-11-21T13:35:18.000Z
+      fNumber: 11
+      focalLength: 35.1
+      iso: 640
+      model: ILCE-6700
+      shutterSpeed: 400
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: street/DSC00775.jpg
+    meta:
+      title: Dsc00775
+      description: ''
+      collections:
+        - street
+    exif:
+      captureDate: 2025-11-21T14:18:46.000Z
+      fNumber: 5
+      focalLength: 20.5
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 125
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: street/DSC05646.jpg
+    meta:
+      title: Dsc05646
+      description: ''
+      collections:
+        - street
+    exif:
+      captureDate: 2025-04-28T14:33:05.000Z
+      fNumber: 5.6
+      focalLength: 34.2
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 1250
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: mountains/DSC00018.jpg
+    meta:
+      title: Dsc00018
+      description: ''
+      collections:
+        - mountains
+    exif:
+      captureDate: 2025-09-20T15:23:06.000Z
+      fNumber: 9
+      focalLength: 39.3
+      iso: 1250
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: mountains/DSC09756.jpg
+    meta:
+      title: Dsc09756
+      description: ''
+      collections:
+        - mountains
+    exif:
+      captureDate: 2025-09-20T12:35:26.000Z
+      fNumber: 7.1
+      focalLength: 350
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: mountains/DSC09934.jpg
+    meta:
+      title: Dsc09934
+      description: ''
+      collections:
+        - mountains
+    exif:
+      captureDate: 2025-09-20T15:03:31.000Z
+      fNumber: 7.1
+      focalLength: 40.2
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: mountains/DSC09944.jpg
+    meta:
+      title: Dsc09944
+      description: ''
+      collections:
+        - mountains
+    exif:
+      captureDate: 2025-09-20T15:06:14.000Z
+      fNumber: 7.1
+      focalLength: 18
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: mountains/DSC09964.jpg
+    meta:
+      title: Dsc09964
+      description: ''
+      collections:
+        - mountains
+    exif:
+      captureDate: 2025-09-20T15:13:11.000Z
+      fNumber: 7.1
+      focalLength: 23.4
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: mountains/DSC09987.jpg
+    meta:
+      title: Dsc09987
+      description: ''
+      collections:
+        - mountains
+    exif:
+      captureDate: 2025-09-20T15:16:24.000Z
+      fNumber: 7.1
+      focalLength: 50
+      iso: 125
+      model: ILCE-6700
+      shutterSpeed: 800
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: travel/DSC00620.jpg
+    meta:
+      title: Dsc00620
+      description: ''
+      collections:
+        - travel
+    exif:
+      captureDate: 2025-11-19T16:14:46.000Z
+      fNumber: 6.3
+      focalLength: 31.3
+      iso: 800
+      model: ILCE-6700
+      shutterSpeed: 2000
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: travel/DSC06785.jpg
+    meta:
+      title: Dsc06785
+      description: ''
+      collections:
+        - travel
+    exif:
+      captureDate: 2025-05-25T12:57:18.000Z
+      fNumber: 5.6
+      focalLength: 174
+      iso: 400
+      model: ILCE-6700
+      shutterSpeed: 1600
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: travel/DSC06878.jpg
+    meta:
+      title: Dsc06878
+      description: ''
+      collections:
+        - travel
+    exif:
+      captureDate: 2025-05-25T14:03:37.000Z
+      fNumber: 8
+      focalLength: 193
+      iso: 640
+      model: ILCE-6700
+      shutterSpeed: 1600
+      lensModel: E 70-350mm F4.5-6.3 G OSS
