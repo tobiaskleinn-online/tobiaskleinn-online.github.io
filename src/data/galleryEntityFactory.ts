@@ -7,11 +7,14 @@ export const createGalleryImage = async (
 	file: string,
 ): Promise<GalleryImage> => {
 	const relativePath = path.relative(galleryDir, file);
-	const exifData = await exifr.parse(file);
+	const exifData = await exifr.parse(file, {
+		iptc: true,
+		xmp: true
+	});
 	const image = {
 		path: relativePath,
 		meta: {
-			title: toReadableCaption(path.basename(relativePath, path.extname(relativePath))),
+			title: exifData?.Title || exifData?.ObjectName || exifData?.title || toReadableCaption(path.basename(relativePath, path.extname(relativePath))),
 			description: '',
 			collections: collectionIdForImage(relativePath),
 		},
