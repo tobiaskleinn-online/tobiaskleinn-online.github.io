@@ -9,8 +9,6 @@ collections:
     name: Automotive
   - id: Travel
     name: Travel
-  - id: test1
-    name: Test1
 images:
   - path: Automotive/DSC00763.jpg
     meta:
