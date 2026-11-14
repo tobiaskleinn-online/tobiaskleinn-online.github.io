@@ -81,6 +81,20 @@ images:
       model: ILCE-6700
       shutterSpeed: 8
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: Street/DSC00502.jpg
+    meta:
+      title: 4 skies and 4 women?
+      description: ''
+      collections:
+        - Street
+    exif:
+      captureDate: 2026-10-17T15:04:01.000Z
+      fNumber: 7.1
+      focalLength: 19.4
+      iso: 1600
+      model: ILCE-6700
+      shutterSpeed: 500
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Street/DSC00375.jpg
     meta:
       title: Moment of creation or realisation?
@@ -323,20 +337,6 @@ images:
       shutterSpeed: 1250
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Wildlife/DSC00388.jpg
-    meta:
-      title: Ey, this is my territory
-      description: ''
-      collections:
-        - Wildlife
-    exif:
-      captureDate: 2026-08-18T18:29:37.000Z
-      fNumber: 4.5
-      focalLength: 50
-      iso: 1600
-      model: ILCE-6700
-      shutterSpeed: 1250
-      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
-  - path: Wildlife/DSC00388-2.jpg
     meta:
       title: Ey, this is my territory
       description: ''
