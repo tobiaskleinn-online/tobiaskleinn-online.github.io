@@ -73,6 +73,7 @@ images:
       description: ''
       collections:
         - Street
+        - featured
     exif:
       captureDate: 2026-10-17T15:16:42.000Z
       fNumber: 20
@@ -384,7 +385,6 @@ images:
       description: ''
       collections:
         - Wildlife
-        - featured
     exif:
       captureDate: 2026-07-04T09:44:31.000Z
       fNumber: 8
@@ -497,7 +497,6 @@ images:
       description: ''
       collections:
         - Travel
-        - featured
     exif:
       captureDate: 2026-06-01T13:40:21.000Z
       fNumber: 7.1
@@ -950,6 +949,7 @@ images:
       description: ''
       collections:
         - Wildlife
+        - featured
     exif:
       captureDate: 2025-06-19T18:20:33.000Z
       fNumber: 8
