@@ -54,7 +54,7 @@ images:
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Street/DSC00628.jpg
     meta:
-      title: "Goethestrasse"
+      title: 'Goethestrasse'
       description: ''
       collections:
         - Street
