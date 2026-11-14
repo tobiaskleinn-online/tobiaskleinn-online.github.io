@@ -54,7 +54,7 @@ images:
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Street/DSC00628.jpg
     meta:
-      title: 'Goethestrasse'
+      title: Goethestrasse
       description: ''
       collections:
         - Street
@@ -336,6 +336,20 @@ images:
       model: ILCE-6700
       shutterSpeed: 1250
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: Wildlife/DSC00388-2.jpg
+    meta:
+      title: Ey, this is my territory
+      description: ''
+      collections:
+        - Wildlife
+    exif:
+      captureDate: 2026-08-18T18:29:37.000Z
+      fNumber: 4.5
+      focalLength: 50
+      iso: 1600
+      model: ILCE-6700
+      shutterSpeed: 1250
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Travel/DSC00368.jpg
     meta:
       title: Heading home after work, Oslo style
@@ -378,6 +392,20 @@ images:
       iso: 125
       model: ILCE-6700
       shutterSpeed: 250
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: Travel/DSC03577.jpg
+    meta:
+      title: Idyll at the pool
+      description: ''
+      collections:
+        - Travel
+    exif:
+      captureDate: 2026-06-02T18:56:09.000Z
+      fNumber: 8
+      focalLength: 50
+      iso: 200
+      model: ILCE-6700
+      shutterSpeed: 320
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Travel/DSC03574.jpg
     meta:
@@ -498,6 +526,20 @@ images:
       description: ''
       collections:
         - Travel
+    exif:
+      captureDate: 2026-05-23T16:19:42.000Z
+      fNumber: 7.1
+      focalLength: 26.3
+      iso: 1000
+      model: ILCE-6700
+      shutterSpeed: 5000
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: Street/DSC02467.jpg
+    meta:
+      title: Beautiful place in the mountains
+      description: ''
+      collections:
+        - Street
     exif:
       captureDate: 2026-05-23T16:19:42.000Z
       fNumber: 7.1
@@ -695,6 +737,20 @@ images:
       description: ''
       collections:
         - Street
+    exif:
+      captureDate: 2025-11-21T13:35:18.000Z
+      fNumber: 11
+      focalLength: 35.1
+      iso: 640
+      model: ILCE-6700
+      shutterSpeed: 400
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: Travel/DSC00747.jpg
+    meta:
+      title: Oslo watchtower
+      description: ''
+      collections:
+        - Travel
     exif:
       captureDate: 2025-11-21T13:35:18.000Z
       fNumber: 11
@@ -1072,4 +1128,18 @@ images:
       iso: 6400
       model: ILCE-6700
       shutterSpeed: 125
+      lensModel: E 70-350mm F4.5-6.3 G OSS
+  - path: Wildlife/DSC05574.jpg
+    meta:
+      title: Doves are underrated
+      description: ''
+      collections:
+        - Wildlife
+    exif:
+      captureDate: 2025-04-28T13:38:00.000Z
+      fNumber: 6.3
+      focalLength: 350
+      iso: 500
+      model: ILCE-6700
+      shutterSpeed: 1250
       lensModel: E 70-350mm F4.5-6.3 G OSS
