@@ -506,20 +506,6 @@ images:
       model: ILCE-6700
       shutterSpeed: 5000
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
-  - path: Street/DSC02467.jpg
-    meta:
-      title: Beautiful place in the mountains
-      description: ''
-      collections:
-        - Street
-    exif:
-      captureDate: 2026-05-23T16:19:42.000Z
-      fNumber: 7.1
-      focalLength: 26.3
-      iso: 1000
-      model: ILCE-6700
-      shutterSpeed: 5000
-      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Landscape/DSC02440.jpg
     meta:
       title: Beautiful Thun
