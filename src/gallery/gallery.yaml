@@ -54,10 +54,11 @@ images:
       lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Street/DSC00628.jpg
     meta:
-      title: "GoethestraÃ\x9Fe"
+      title: "Goethestrasse"
       description: ''
       collections:
         - Street
+        - featured
     exif:
       captureDate: 2026-10-17T15:47:55.000Z
       fNumber: 6.3
@@ -156,6 +157,7 @@ images:
       description: ''
       collections:
         - Street
+        - featured
     exif:
       captureDate: 2026-10-17T13:40:46.000Z
       fNumber: 6.3
@@ -914,20 +916,6 @@ images:
       model: ILCE-6700
       shutterSpeed: 250
       lensModel: FE 50mm F2.8 Macro
-  - path: test1/DSC08047.jpg
-    meta:
-      title: Ladybug in summer morning
-      description: ''
-      collections:
-        - test1
-    exif:
-      captureDate: 2025-06-19T18:20:33.000Z
-      fNumber: 8
-      focalLength: 50
-      iso: 1600
-      model: ILCE-6700
-      shutterSpeed: 250
-      lensModel: FE 50mm F2.8 Macro
   - path: Street/DSC07558.jpg
     meta:
       title: Roof of structure
@@ -1043,20 +1031,6 @@ images:
       model: ILCE-6700
       shutterSpeed: 1600
       lensModel: E 70-350mm F4.5-6.3 G OSS
-  - path: Street/DSC06671.jpg
-    meta:
-      title: F8 Tributo Coupe
-      description: ''
-      collections:
-        - Street
-    exif:
-      captureDate: 2025-05-22T11:22:20.000Z
-      fNumber: 5
-      focalLength: 32.8
-      iso: 125
-      model: ILCE-6700
-      shutterSpeed: 60
-      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Automotive/DSC06671.jpg
     meta:
       title: F8 Tributo Coupe
