@@ -34,6 +34,7 @@ html = html.replace(
 	'<div class="module-identity"><strong>Camera &amp; optics</strong></div>',
 );
 html = html.replace('Camera &amp; Optics Basics', 'Camera and optics basics');
+html = html.replace('<aside id="camera-controls"', '<aside hidden id="camera-controls"');
 await fs.writeFile(path.join(root, 'src/data/camera-physics.html'), html);
 // Keep module selectors from affecting the shared portfolio header, footer or gallery.
 const css = postcss.parse(await fs.readFile(path.join(source, 'style.css'), 'utf8'));
@@ -105,7 +106,7 @@ app = app.replace(
 	`function page(id){
  if(id==='equiv')id='tools';
  if(!['lab','learn','tools'].includes(id))id='lab';
- $('camera-controls').hidden=id==='tools';
+ $('camera-controls').hidden=id!=='lab';
  document.querySelector('.module-header').hidden=false;
  document.querySelectorAll('.camera-app .page').forEach(el=>el.hidden=el.id!==id);
  document.querySelectorAll('.camera-app .nav').forEach(el=>{const active=el.dataset.page===id;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});

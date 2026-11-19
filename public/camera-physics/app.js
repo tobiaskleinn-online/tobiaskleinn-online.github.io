@@ -43,7 +43,7 @@ function values() {
 function page(id) {
 	if (id === 'equiv') id = 'tools';
 	if (!['lab', 'learn', 'tools'].includes(id)) id = 'lab';
-	$('camera-controls').hidden = id === 'tools';
+	$('camera-controls').hidden = id !== 'lab';
 	document.querySelector('.module-header').hidden = false;
 	document.querySelectorAll('.camera-app .page').forEach((el) => (el.hidden = el.id !== id));
 	document.querySelectorAll('.camera-app .nav').forEach((el) => {
