@@ -1,0 +1,44 @@
+/* Shared visual foundations. The browser guide and printable sheet read these values. */
+:root,
+[data-palette='light'] {
+	color-scheme: light;
+	--paper: #fafafa;
+	--ink: #242424;
+	--quiet: #666666;
+	--line: #dedede;
+	--soft: #eeeeee;
+	--accent-ink: #3e3e3e;
+	--slider-track: #858585;
+	--slider-thumb: #242424;
+	--slider-focus: #242424;
+	--background: 0 0% 98%;
+	--foreground: 0 0% 14%;
+	--border: 0 0% 87%;
+}
+:root[data-theme='dark'],
+[data-palette='dark'] {
+	color-scheme: dark;
+	--paper: #181818;
+	--ink: #f1f1f1;
+	--quiet: #b4b4b4;
+	--line: #3a3a3a;
+	--soft: #242424;
+	--accent-ink: #d5d5d5;
+	--slider-track: #858585;
+	--slider-thumb: #f1f1f1;
+	--slider-focus: #f1f1f1;
+	--background: 0 0% 9%;
+	--foreground: 0 0% 95%;
+	--border: 0 0% 23%;
+}
+:root {
+	--photo-border: #ffffff;
+	--header-height: 72px;
+	--page-width: 1200px;
+	--photo-mat: 8px;
+	--gallery-mat: 3px;
+	--gallery-gap: 10px;
+	--gallery-gap-mobile: 7px;
+	--hover-scale: 1.02;
+	--motion-duration: 250ms;
+}

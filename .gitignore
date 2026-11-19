@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # app
 src/data/__tests__/gallery/gallery.yaml
+
+# Local design reference materials; never part of the published site.
+/design-guide/
+/output/pdf/

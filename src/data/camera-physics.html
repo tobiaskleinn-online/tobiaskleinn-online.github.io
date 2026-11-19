@@ -1,0 +1,996 @@
+<div class="module-header">
+	<div class="module-identity"><strong>Camera &amp; optics</strong></div>
+	<nav class="module-nav" aria-label="Camera &amp; Optics sections">
+		<button class="nav active" data-page="lab">Camera Lab</button
+		><button class="nav" data-page="learn">Basics</button
+		><button class="nav" data-page="tools">Tools</button>
+	</nav>
+</div>
+<div class="camera-main">
+	<aside id="camera-controls" class="controls" aria-label="Camera settings">
+		<div class="controls-title">
+			<h2>Your camera</h2>
+			<span>SETTINGS</span>
+		</div>
+		<div class="control">
+			<label for="sensor"
+				><span><b>01</b> Sensor size</span
+				><a href="#learn" data-topic="sensor" aria-label="Learn about sensor size">?</a></label
+			><select id="sensor">
+				<option value="full">Full frame · 36 × 24 mm</option>
+				<option value="aps">APS-C · 23.5 × 15.7 mm</option>
+				<option value="canon">Canon APS-C · 22.3 × 14.9 mm</option>
+				<option value="mft">Micro Four Thirds · 17.3 × 13 mm</option>
+				<option value="medium">Medium format · 44 × 33 mm</option>
+			</select>
+			<p>Sensor dimensions affect the angle of view.</p>
+		</div>
+		<div class="control">
+			<label for="focal"
+				><span><b>02</b> Focal length</span><output id="focal-val"></output></label
+			><input type="range" min="16" max="200" value="50" step="0.1" id="focal" />
+			<div class="focal-ticks" aria-hidden="true">
+				<i style="left: 0%" title="16 mm"></i><i style="left: 4.348%" title="24 mm"></i
+				><i style="left: 10.326%" title="35 mm"></i><i style="left: 18.478%" title="50 mm"></i
+				><i style="left: 29.348%" title="70 mm"></i><i style="left: 37.5%" title="85 mm"></i
+				><i style="left: 64.674%" title="135 mm"></i><i style="left: 100%" title="200 mm"></i>
+			</div>
+			<div class="focal-shortcuts" aria-label="Focal length shortcuts">
+				<button
+					data-focal-stop="16"
+					aria-label="16 mm"
+					aria-pressed="false"
+					title="Set focal length to 16 mm"
+				>
+					16</button
+				><button
+					data-focal-stop="35"
+					aria-label="35 mm"
+					aria-pressed="false"
+					title="Set focal length to 35 mm"
+				>
+					35</button
+				><button
+					data-focal-stop="50"
+					aria-label="50 mm"
+					aria-pressed="false"
+					title="Set focal length to 50 mm"
+				>
+					50</button
+				><button
+					data-focal-stop="70"
+					aria-label="70 mm"
+					aria-pressed="false"
+					title="Set focal length to 70 mm"
+				>
+					70</button
+				><span>mm</span>
+			</div>
+			<div class="range-labels"><span>16 mm · WIDE</span><span>200 mm · TELEPHOTO</span></div>
+		</div>
+		<div class="control">
+			<label for="aperture"
+				><span><b>03</b> Aperture <small>/ f-stop</small></span
+				><output id="aperture-val"></output></label
+			><input type="range" min="0" max="8" value="1" step="1" id="aperture" />
+			<div class="range-labels"><span>f/1.4 · MORE LIGHT</span><span>f/22 · MORE DEPTH</span></div>
+		</div>
+		<div class="control">
+			<div class="focus-heading">
+				<label for="distance"
+					><span><b>04</b> Focus distance</span><output id="distance-val"></output></label
+				><button
+					id="toolbar-snap"
+					aria-label="Focus on subject"
+					title="Set focus distance to the scene subject"
+				>
+					<span>Snap</span
+					><svg viewBox="0 0 20 20" aria-hidden="true">
+						<path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4" />
+						<circle cx="10" cy="10" r="3" />
+					</svg>
+				</button>
+			</div>
+			<input type="range" min="0.5" max="30" value="3" step="0.1" id="distance" />
+			<div class="range-labels"><span>0.5 m · NEAR</span><span>30 m · FAR</span></div>
+		</div>
+		<div class="insight">
+			<span>↳</span>
+			<p id="insight"></p>
+		</div>
+	</aside>
+	<section id="lab" class="page">
+		<div class="intro">
+			<div>
+				<div class="eyebrow">EXPLORE</div>
+				<h1>Camera Lab</h1>
+				<p>Explore framing, focus and depth of field. Adjust a setting to see its effect.</p>
+				<button id="show-diagrams" class="diagram-jump">Read the basics →</button>
+			</div>
+		</div>
+		<div class="lab-grid">
+			<section class="preview-panel">
+				<div class="panel-top">
+					<span><i class="live"></i> LIVE VIEW</span>
+					<div class="segmented" aria-label="Preview mode">
+						<button class="selected" data-view="scene">The scene</button
+						><button data-view="top">Top view</button><button data-view="three">3D view</button
+						><button data-view="optics">Light &amp; lens</button>
+					</div>
+					<button
+						id="compare-toggle"
+						class="compare-toggle"
+						aria-expanded="false"
+						aria-controls="aperture-comparison"
+					>
+						Compare apertures</button
+					><button
+						id="grid-toggle"
+						class="icon-btn"
+						aria-label="Toggle composition grid"
+						aria-pressed="false"
+					>
+						⊞
+					</button>
+				</div>
+				<div id="portrait-3d-controls" class="portrait-3d-controls" hidden>
+					<div class="portrait-subject-choice" role="group" aria-label="Portrait subject">
+						<span>Subject</span
+						><button data-portrait-subject="human" aria-pressed="true">Human</button
+						><button data-portrait-subject="deer" aria-pressed="false">Deer</button>
+					</div>
+					<div class="portrait-perspective" role="group" aria-label="3D viewpoint">
+						<button data-portrait-view="overview" aria-pressed="true">Overview</button
+						><button data-portrait-view="camera" aria-pressed="false">Camera view</button
+						><button id="portrait-reset-view" aria-label="Reset 3D viewpoint">↺</button>
+					</div>
+				</div>
+				<div class="viewfinder">
+					<div id="portrait-3d-host" aria-label="Rotatable 3D portrait clearing" hidden></div>
+					<svg
+						id="scene-3d"
+						viewBox="0 0 720 430"
+						role="group"
+						aria-label="Interactive 3D camera and scene distances"
+						hidden
+					></svg
+					><svg
+						id="top-view"
+						viewBox="0 0 720 330"
+						role="group"
+						aria-label="Scene distances from above"
+						hidden
+					></svg
+					><svg
+						id="live-optics"
+						viewBox="0 0 720 370"
+						role="img"
+						aria-label="Camera sensor, lens, aperture and object-side depth of field"
+						hidden
+					></svg
+					><canvas id="scene" aria-label="Illustrative camera preview showing framing and defocus"
+						>An illustrative scene responds to camera settings.</canvas
+					>
+					<div class="view-top">
+						<span id="view-sensor">FULL FRAME</span
+						><span id="preview-kind">ILLUSTRATIVE PREVIEW</span>
+					</div>
+					<div id="focus-mark" class="focus-mark"><span>FOCUS</span></div>
+					<div class="view-bottom">
+						<span id="shot-info"></span><span>● <span id="fov-info"></span></span>
+					</div>
+				</div>
+				<p id="portrait-3d-note" class="portrait-3d-note" hidden>
+					3D geometry preview; use The scene to compare photographic blur.
+				</p>
+				<div id="camera-position-control" class="camera-position-control" hidden>
+					<label for="camera-position"
+						>Camera position (m)<input id="camera-position" type="number" value="0" step="0.1"
+					/></label>
+					<p>
+						Moving the camera changes every object distance. Focus stays on the same position in the
+						scene.
+					</p>
+				</div>
+				<div id="scene-distances" class="scene-distances" hidden>
+					<p>Drag the dots above, use arrow keys, or enter distances below (meters).</p>
+					<div class="object-inputs">
+						<label
+							>Foreground
+							<input id="object-foreground" type="number" step="0.1" min="0.3" max="50" /></label
+						><label
+							>Subject
+							<input id="object-subject" type="number" step="0.1" min="0.3" max="50" /></label
+						><label
+							>Background <input id="object-background" type="number" step="0.1" min="0.3" max="50"
+						/></label>
+					</div>
+					<div class="top-actions">
+						<button id="focus-subject">Focus on subject</button
+						><span id="subject-separation"></span>
+					</div>
+				</div>
+				<div class="scene-caption">
+					<span class="small-cross">＋</span>
+					<p id="scene-caption">The person is 3 m from the camera.</p>
+					<span id="scene-name" class="scene-no">PORTRAIT</span>
+				</div>
+				<section
+					id="aperture-comparison"
+					class="aperture-comparison"
+					aria-label="Aperture comparison"
+					hidden
+				>
+					<div class="comparison-heading">
+						<div>
+							<h3>Compare apertures</h3>
+							<p>Same sensor, lens and focus. Displayed brightness is held constant.</p>
+						</div>
+						<button id="compare-close" aria-label="Close aperture comparison">×</button>
+					</div>
+					<div class="comparison-toolbar">
+						<div class="segmented" aria-label="Comparison layout">
+							<button data-comparison-layout="side" aria-pressed="true">Side by side</button
+							><button data-comparison-layout="split" aria-pressed="false">A/B slider</button>
+						</div>
+						<button id="compare-magnify" aria-pressed="false">
+							⌕ <span>Magnifier</span><small>3×</small>
+						</button>
+					</div>
+					<p id="magnifier-help" class="comparison-help" hidden>
+						Hover to inspect; click, right-click or Escape to exit. On touch screens, drag to
+						inspect.
+					</p>
+					<div class="comparison-grid">
+						<div>
+							<div class="compare-label">
+								<label for="compare-a">Aperture A</label
+								><select id="compare-a"></select>
+							</div>
+							<div class="compare-frame">
+								<canvas id="compare-scene-a" aria-label="Scene at aperture A"></canvas>
+							</div>
+							<p id="compare-result-a"></p>
+						</div>
+						<div>
+							<div class="compare-label">
+								<label for="compare-b">Aperture B</label
+								><select id="compare-b"></select>
+							</div>
+							<div class="compare-frame">
+								<canvas id="compare-scene-b" aria-label="Same scene at aperture B"></canvas>
+							</div>
+							<p id="compare-result-b"></p>
+						</div>
+					</div>
+					<div id="comparison-split-wrap" hidden>
+						<div class="comparison-split-stage">
+							<canvas
+								id="compare-split"
+								aria-label="Aligned aperture A and B comparison with a draggable divider"
+							></canvas
+							><span class="split-label split-a">A</span><span class="split-label split-b">B</span>
+							<div id="compare-divider" aria-hidden="true"><span>↔</span></div>
+						</div>
+						<label class="wipe-label" for="compare-wipe"
+							><span>A</span><span>Drag to compare</span><span>B</span></label
+						><input
+							id="compare-wipe"
+							type="range"
+							min="0"
+							max="100"
+							value="50"
+							step="1"
+							aria-label="A/B comparison divider"
+						/>
+					</div>
+					<canvas id="comparison-loupe" aria-hidden="true" hidden></canvas>
+					<div id="compare-explanation" class="compare-explanation" aria-live="polite"></div>
+				</section>
+				<div class="presets">
+					<span>SCENE</span><button data-preset="portrait" class="chosen">Portrait</button
+					><button data-preset="landscape">Landscape</button
+					><button data-preset="macro">Macro</button
+					><button id="snap-focus" class="snap-focus">Focus on subject</button
+					><button id="reset" class="reset">Reset ↺</button>
+				</div>
+			</section>
+		</div>
+		<div class="results" aria-live="polite">
+			<div>
+				<span>FULL-FRAME EQUIVALENT <i title="Diagonal field-of-view equivalence">↗</i></span
+				><strong id="result-equiv"></strong><small id="crop-label"></small>
+			</div>
+			<div>
+				<span>DEPTH OF FIELD</span><strong id="result-dof"></strong
+				><small>Zone of acceptable sharpness</small>
+			</div>
+			<div>
+				<span>NEAR → FAR FOCUS LIMIT</span><strong id="result-limits"></strong
+				><small id="hyper-label"></small>
+			</div>
+			<div class="aperture-result">
+				<svg id="iris" viewBox="0 0 70 70" role="img" aria-label="Seven aperture blades"></svg>
+				<div>
+					<span>APERTURE DIAMETER</span><strong id="result-pupil"></strong
+					><small>Focal length ÷ f-number</small>
+				</div>
+			</div>
+		</div>
+		<details class="method">
+			<summary>Simulation & calculation details</summary>
+			<p>
+				The scene is a stylized thin-lens illustration, not a photograph or a lens-specific bokeh
+				simulator. Use Top view to change foreground, subject, background and focus distances.
+				Portrait, landscape and macro use different objects and distance ranges. Exposure is held
+				constant to isolate framing and blur. Perspective stays fixed because the camera does not
+				move. Sensor aspect ratio changes the preview crop.
+			</p>
+			<p>
+				Depth of field uses a circle of confusion equal to sensor diagonal / 1500, intended for a
+				conventional viewing-size comparison. Actual perceived sharpness depends on enlargement,
+				viewing distance, eyesight, diffraction and lens performance. Hyperfocal H = f²/(N·c) + f.
+				Distances in the simulation are measured from the equivalent thin-lens plane. Real camera
+				focus marks are measured from the sensor plane. Macro results are idealized: pupil
+				magnification, focus breathing, effective f-number, diffraction and lens-specific minimum
+				focus distances are not modeled. Horizontal angle of view uses 2·atan(sensor width / 2f).
+			</p>
+			<p>
+				Further reading:
+				<a
+					href="https://www.nikonusa.com/learn-and-explore/c/products-and-innovation/understanding-focal-length"
+					target="_blank"
+					rel="noreferrer"
+					>Nikon: understanding focal length</a
+				>
+				·
+				<a
+					href="https://www.nikon.com.au/news/learn-explore/what-is-crop-factor"
+					target="_blank"
+					rel="noreferrer"
+					>Nikon: crop factor</a
+				>.
+			</p>
+		</details>
+	</section>
+	<section id="learn" class="page" hidden>
+		<div class="intro">
+			<div>
+				<div class="eyebrow">LEARN</div>
+				<h1>Camera and optics basics</h1>
+				<p>Camera parameters, diagrams, optical effects, motion, noise and film grain.</p>
+			</div>
+		</div>
+		<div class="learn-group-tabs" role="tablist" aria-label="Learning categories">
+			<button
+				id="learn-group-basics"
+				data-learn-group="basics"
+				role="tab"
+				aria-controls="basics-panel"
+				aria-selected="true"
+				tabindex="0"
+			>
+				Camera basics</button
+			><button
+				id="learn-group-optical"
+				data-learn-group="optical"
+				role="tab"
+				aria-controls="effects-panel"
+				aria-selected="false"
+				tabindex="-1"
+			>
+				Optical effects</button
+			><button
+				id="learn-group-motion"
+				data-learn-group="motion"
+				role="tab"
+				aria-controls="effects-panel"
+				aria-selected="false"
+				tabindex="-1"
+			>
+				Motion &amp; shutter</button
+			><button
+				id="learn-group-noise"
+				data-learn-group="noise"
+				role="tab"
+				aria-controls="effects-panel"
+				aria-selected="false"
+				tabindex="-1"
+			>
+				Noise &amp; grain
+			</button>
+		</div>
+		<div id="basics-panel" role="tabpanel" aria-labelledby="learn-group-basics">
+			<div class="learn-layout">
+				<div class="topic-nav" role="tablist" aria-label="Camera concepts"></div>
+				<article id="lesson" class="lesson"></article>
+			</div>
+		</div>
+		<section id="diagrams-panel" hidden>
+			<section id="diagrams" class="diagrams" aria-label="Optics diagrams">
+				<article
+					id="diagram-focal"
+					role="tabpanel"
+					aria-labelledby="diagram-tab-focal"
+					class="diagram-card"
+				>
+					<div class="diagram-copy">
+						<span class="diagram-number">01</span>
+						<h3>Focal length</h3>
+						<p>
+							Focal length is the optical distance from the lens’s rear principal plane to the
+							sensor when focused at infinity.
+						</p>
+						<details class="explain-more">
+							<summary>More details &amp; references</summary>
+							<p>
+								<strong
+									>Focal length is the distance from the rear principal plane of a lens to its rear
+									focal point, measured in millimeters.</strong
+								>
+								When focused at infinity, the sensor is at this focal plane.
+							</p>
+							<p>
+								For a simple thin lens, the principal plane passes through its center. In a real
+								lens with several elements, it is an optical reference plane and may lie outside the
+								glass. Focal length is not the length of the lens barrel.
+							</p>
+							<p>
+								Parallel rays from a very distant point meet at the focal point. The diagram shows
+								this infinity-focus condition, independently of the focus-distance slider.
+							</p>
+							<a
+								class="source-link"
+								href="https://www.nikonusa.com/learn-and-explore/c/products-and-innovation/understanding-focal-length"
+								target="_blank"
+								rel="noreferrer"
+								>Reference: Nikon · focal length ↗</a
+							><br /><a
+								class="source-link"
+								href="https://www.edmundoptics.com/knowledge-center/application-notes/imaging/understanding-focal-length-and-field-of-view/"
+								target="_blank"
+								rel="noreferrer"
+								>Edmund Optics · principal plane &amp; angle of view ↗</a
+							>
+						</details>
+					</div>
+					<div class="diagram-visual">
+						<svg
+							id="focal-definition"
+							viewBox="0 0 620 285"
+							role="img"
+							aria-label="Parallel incoming rays converge at a focal point on the sensor. Focal length is measured from the rear principal plane to that point."
+						></svg>
+					</div>
+				</article>
+				<article
+					id="diagram-angle"
+					role="tabpanel"
+					aria-labelledby="diagram-tab-angle"
+					hidden
+					class="diagram-card"
+				>
+					<div class="diagram-copy">
+						<span class="diagram-number">02</span>
+						<h3>Focal length changes the view</h3>
+						<p>
+							Shorter focal length: wider view. Longer focal length: narrower view and a larger
+							image of the subject.
+						</p>
+						<div id="fov-options" class="fov-options" aria-label="Compare focal lengths"></div>
+						<details class="explain-more">
+							<summary>More details &amp; human vision</summary>
+							<div class="human-reference">
+								<strong>Human vision reference</strong>
+								<p>
+									50 mm on full frame is a common “normal lens” reference for natural-looking
+									images. This is a photographic convention, not the eye’s actual focal length or
+									its full visual field.
+								</p>
+								<button id="human-reference">Use 50 mm full-frame equivalent</button>
+								<p id="human-equivalent"></p>
+								<details>
+									<summary>The eye’s optical focal length</summary>
+									<p>
+										A relaxed eye has roughly 60 diopters of optical power, equivalent to about 16.7
+										mm focal length in air. This is not a camera-format equivalence: the retina is
+										curved, sharpness varies across it, and vision combines both eyes and eye
+										movements.
+									</p>
+									<a
+										class="source-link"
+										href="https://www.aao.org/education/current-insight/optical-properties-of-eye"
+										target="_blank"
+										rel="noreferrer"
+										>American Academy of Ophthalmology · eye optics ↗</a
+									>
+								</details>
+								<a
+									class="source-link"
+									href="https://imaging.nikon.com/imaging/information/story/0049/index.html"
+									target="_blank"
+									rel="noreferrer"
+									>Nikon · the 50 mm convention ↗</a
+								>
+							</div>
+							<p>
+								A shorter focal length captures a wider angle. A longer focal length captures a
+								narrower angle and makes the same subject larger in the frame.
+							</p>
+							<p>
+								Compare the colored wedges. Each represents the horizontal angle of view for the
+								selected sensor. Click a focal length to use it in the scene above.
+							</p>
+							<p class="diagram-note">
+								Rectilinear lenses only. Fisheye lenses use a different projection. Camera position
+								stays fixed; changing focal length alone does not change perspective.
+							</p>
+						</details>
+					</div>
+					<div class="diagram-visual">
+						<svg
+							id="fov-diagram"
+							viewBox="0 0 620 330"
+							role="img"
+							aria-label="Comparison of horizontal angles of view for several focal lengths"
+						></svg>
+						<p id="fov-summary" class="diagram-summary" aria-live="polite"></p>
+					</div>
+				</article>
+				<article
+					id="diagram-blur"
+					role="tabpanel"
+					aria-labelledby="diagram-tab-blur"
+					hidden
+					class="diagram-card focus-card"
+				>
+					<div class="diagram-copy">
+						<span class="diagram-number">03</span>
+						<h3>In focus and out of focus</h3>
+						<p>
+							In focus, rays from a point meet on the sensor. Out of focus, they form a blur disc. A
+							smaller aperture reduces that disc.
+						</p>
+						<label for="test-distance"
+							>Test object distance <output id="test-distance-value">4.0 m</output></label
+						><input id="test-distance" type="range" min="0.5" max="30" step="0.1" value="4" />
+						<div class="focus-actions">
+							<button id="test-near">Closer than focus</button
+							><button id="test-sharp">At focus</button
+							><button id="test-far">Farther than focus</button>
+						</div>
+						<p id="blur-readout" class="blur-readout" aria-live="polite"></p>
+						<details class="blur-limit explain-more">
+							<summary>Sharpness limit <span id="blur-limit-compact"></span></summary>
+							<p id="blur-limit-summary"></p>
+							<details class="explain-more">
+								<summary>Is there a maximum blur size?</summary>
+								<p>
+									There is no single maximum for all lenses and scenes. The physical blur diameter
+									depends on focal length, aperture, focus setting and object distance. The circle
+									of confusion is a chosen sharpness tolerance, not a physical cap on blur. Larger
+									discs are still possible; they are simply outside the accepted depth of field.
+								</p>
+								<p>
+									This tool uses sensor diagonal ÷ 1500 as the acceptable diameter. It does not
+									represent a universal pixel-size or eye-resolution limit. Output size, viewing
+									distance and required detail change what looks sharp.
+								</p>
+								<p>
+									The drawing rescales both pink spots together to fit. Its largest drawn spot is
+									not a maximum physical blur size; read the diameter in millimeters.
+								</p>
+							</details>
+						</details>
+						<details class="explain-more">
+							<summary>More details &amp; bokeh</summary>
+							<p>
+								<strong>Are these bokeh balls?</strong> The pink discs represent a defocused point’s
+								image on the sensor. Small bright lights can appear as bokeh discs in a photo. They
+								are not physical spheres. “Bokeh” describes the appearance of the out-of-focus
+								image, including softness, shape and texture. Blade shape and lens aberrations
+								affect it.
+							</p>
+							<a
+								class="source-link"
+								href="https://www.nikonusa.com/learn-and-explore/c/tips-and-techniques/bokeh-for-beginners"
+								target="_blank"
+								rel="noreferrer"
+								>Nikon · bokeh ↗</a
+							>
+							<p>
+								<strong>In focus:</strong> rays from an object point converge at the sensor plane.
+								<strong>Out of focus:</strong> they converge in front of or behind the sensor, so
+								the sensor records a disc instead of a point. Its diameter is the geometric blur
+								circle.
+							</p>
+							<p>
+								A smaller aperture narrows the ray cone. The same focusing error then produces a
+								smaller blur circle. Compare the current aperture with an aperture two stops smaller
+								below.
+							</p>
+							<a
+								class="source-link"
+								href="https://www.edmundoptics.com/knowledge-center/application-notes/imaging/depth-of-field-and-depth-of-focus/"
+								target="_blank"
+								rel="noreferrer"
+								>Reference: Edmund Optics · depth of field ↗</a
+							>
+						</details>
+					</div>
+					<div class="diagram-visual">
+						<svg
+							id="focus-diagram"
+							viewBox="0 0 620 390"
+							role="img"
+							aria-label="Ray cones show the blur circle at the sensor for the current aperture and a smaller aperture"
+						></svg>
+						<p class="diagram-note">
+							Image-side geometry, with axial defocus enlarged for visibility. Pink: actual blur
+							disc. Dashed ring: chosen sharpness limit. Both rows use the same spot scale, which
+							adjusts to fit. Geometric optics only: real in-focus points still have a finite size
+							because of diffraction and aberrations.
+						</p>
+					</div>
+				</article>
+				<article
+					id="diagram-depth"
+					class="depth-panel"
+					role="tabpanel"
+					aria-labelledby="diagram-tab-depth"
+					hidden
+				>
+					<h3>Depth of field</h3>
+					<p>
+						The range of object distances that meet the chosen sharpness limit. Increase the
+						f-number or change focus above to see the range change.
+					</p>
+					<div class="below-lab">
+						<div>
+							<span class="eyebrow">FOCUS RANGE</span>
+							<h2>Depth of field</h2>
+							<p>
+								Focus sets one sharp plane. Depth of field is the zone around it that looks
+								acceptably sharp.
+							</p>
+						</div>
+						<div class="depth-wrap">
+							<div class="depth-legend">
+								<span><i></i> Acceptably sharp</span
+								><span>Distance from camera · logarithmic scale</span>
+							</div>
+							<svg
+								id="depth-chart"
+								viewBox="0 0 650 110"
+								role="img"
+								aria-label="Depth of field distance chart"
+							></svg>
+						</div>
+					</div>
+					<details class="explain-more">
+						<summary>More details &amp; depth of focus</summary>
+						<div class="definition-strip">
+							<div>
+								<h3>Depth of field</h3>
+								<p>
+									The range of <strong>object distances</strong> that meet a chosen sharpness
+									threshold without refocusing. In this tool, the geometric blur circle must be no
+									larger than the selected sensor’s circle-of-confusion limit.
+								</p>
+							</div>
+							<div>
+								<h3>Depth of focus</h3>
+								<p>
+									The permitted range of <strong>sensor positions</strong> around the image plane
+									for a fixed subject and lens setting. This is on the image side of the lens; it is
+									different from depth of field.
+								</p>
+							</div>
+						</div>
+					</details>
+				</article>
+			</section>
+		</section>
+		<section id="effects-panel" role="tabpanel" aria-labelledby="learn-group-optical" hidden>
+			<div class="learn-layout">
+				<div
+					id="effect-topic-nav"
+					class="topic-nav"
+					role="tablist"
+					aria-label="Effect topics"
+				></div>
+				<article id="effect-panel" class="lesson effect-lesson" role="tabpanel"></article>
+			</div>
+		</section>
+	</section>
+	<section id="tools" class="page" hidden>
+		<div class="intro">
+			<div>
+				<div class="eyebrow">CALCULATE</div>
+				<h1>Tools</h1>
+				<p>Quick calculations for camera settings and night photography.</p>
+			</div>
+		</div>
+		<div class="learn-group-tabs" role="tablist" aria-label="Photography tools">
+			<button
+				id="tool-tab-equivalence"
+				data-tool="equivalence"
+				role="tab"
+				aria-controls="equiv"
+				aria-selected="true"
+				tabindex="0"
+			>
+				Sensor equivalence</button
+			><button
+				id="tool-tab-stars"
+				data-tool="stars"
+				role="tab"
+				aria-controls="star-tool"
+				aria-selected="false"
+				tabindex="-1"
+			>
+				Star shutter speed
+			</button>
+		</div>
+		<section id="equiv" role="tabpanel" aria-labelledby="tool-tab-equivalence">
+			<div class="tool-heading">
+				<div>
+					<h2>Sensor equivalence</h2>
+					<p>
+						Calculate the focal length and aperture needed for a comparable image on another sensor.
+					</p>
+				</div>
+			</div>
+			<div class="equiv-layout">
+				<div class="equiv-form">
+					<h2>Start with your setup</h2>
+					<label for="from-sensor">From sensor</label
+					><select id="from-sensor"></select>
+					<div class="form-row">
+						<div>
+							<label for="eq-focal">Focal length (mm)</label
+							><input id="eq-focal" type="range" min="1" max="400" value="50" step="1" />
+							<div class="tool-range-value">
+								<output id="eq-focal-output"></output
+								><input
+									aria-label="Exact value"
+									id="eq-focal-exact"
+									type="number"
+									min="1"
+									max="2000"
+									step="1"
+								/>
+							</div>
+						</div>
+						<div>
+							<label for="eq-aperture">Aperture (f-number)</label
+							><input id="eq-aperture" type="range" min="0.5" max="32" step="0.1" value="2" />
+							<div class="tool-range-value">
+								<output id="eq-aperture-output"></output
+								><input
+									aria-label="Exact value"
+									id="eq-aperture-exact"
+									type="number"
+									min="0.5"
+									max="64"
+									step="0.1"
+								/>
+							</div>
+						</div>
+					</div>
+					<label for="to-sensor">To sensor</label
+					><select id="to-sensor"></select
+					><button class="primary" id="swap">Swap sensor formats ⇄</button>
+					<p id="eq-error" role="alert"></p>
+				</div>
+				<div class="equiv-output" aria-live="polite">
+					<span class="eyebrow">EQUIVALENT SETTINGS</span>
+					<div id="eq-answer"></div>
+					<p id="eq-explain"></p>
+					<div class="eq-note">
+						<strong>What stays the same?</strong>
+						<p>
+							The equivalent focal length matches diagonal angle of view. Matching depth of field
+							also needs the equivalent f-number, the same camera position and focus distance, and
+							comparable output size. Different aspect ratios do not match both frame edges.
+						</p>
+						<p>
+							The equivalent f-number describes depth of field, not exposure. f/2 stays f/2 for
+							exposure on any format. Using the displayed equivalent aperture would require
+							adjusting shutter speed or ISO to retain brightness.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="star-tool" role="tabpanel" aria-labelledby="tool-tab-stars" hidden>
+			<div class="tool-heading">
+				<div>
+					<h2>Star shutter speed</h2>
+					<p>Estimate an exposure time for stars on a tripod, without a tracking mount.</p>
+				</div>
+				<div class="star-heading-actions">
+					<button
+						id="star-recommend-toggle"
+						aria-expanded="false"
+						aria-controls="star-recommendations"
+					>
+						Recommended settings</button
+					><button
+						id="star-use-lab"
+						title="Copy sensor format and focal length; resolution stays unchanged."
+					>
+						Use lab settings
+					</button>
+				</div>
+			</div>
+			<aside id="star-recommendations" class="star-recommendations" hidden>
+				<h3>Starting point · dark sky, tripod</h3>
+				<div class="recommend-grid">
+					<div>
+						<span>Shutter</span><strong id="recommended-exposure">—</strong
+						><small>From your pixel limit</small>
+					</div>
+					<div>
+						<span>Aperture</span><strong>f/1.4–f/2.8</strong><small>If your lens supports it</small>
+					</div>
+					<div>
+						<span>ISO</span><strong>1600–3200</strong><small>Adjust after a test exposure</small>
+					</div>
+					<div>
+						<span>Capture</span><strong>RAW · Manual</strong
+						><small>Steady tripod and self-timer</small>
+					</div>
+				</div>
+				<p>
+					Use a wide-angle lens and focus manually on a bright star. Check focus and the histogram.
+					These are starting points; sky brightness, lens performance and your camera change the
+					best settings.
+				</p>
+				<p>
+					The 500 rule is a quick exposure guide, but can produce trails on modern sensors. Use the
+					pixel estimate above when you want to control star movement.
+				</p>
+				<a
+					class="source-link"
+					href="https://www.photopills.com/articles/milky-way-photography-guide"
+					target="_blank"
+					rel="noreferrer"
+					>PhotoPills · Milky Way camera settings ↗</a
+				>
+			</aside>
+
+			<div class="star-layout">
+				<div class="star-form">
+					<label for="star-sensor">Sensor format</label
+					><select id="star-sensor"></select>
+					<div class="form-row">
+						<div>
+							<label for="star-focal">Focal length (mm)</label
+							><input id="star-focal" type="range" min="1" max="400" step="0.1" value="24" />
+							<div class="tool-range-value">
+								<output id="star-focal-output"></output
+								><input
+									aria-label="Exact value"
+									id="star-focal-exact"
+									type="number"
+									min="1"
+									max="2000"
+									step="1"
+								/>
+							</div>
+						</div>
+						<div>
+							<label for="star-mp">Sensor resolution (MP)</label
+							><input id="star-mp" type="number" min="1" max="200" step="0.1" value="24" />
+						</div>
+					</div>
+					<label for="star-tolerance">Allowed star movement</label
+					><select id="star-tolerance">
+						<option value="1">1 pixel · strict</option>
+						<option value="2" selected>2 pixels</option>
+						<option value="3">3 pixels</option>
+						<option value="5">5 pixels</option>
+						<option value="7">7 pixels · more movement</option>
+					</select>
+					<p class="tool-hint">Use the actual focal length and native sensor resolution.</p>
+					<details class="explain-more">
+						<summary>Sky position <output id="star-declination-summary">0°</output></summary>
+						<label for="star-declination">Minimum absolute declination (°)</label
+						><input id="star-declination" type="number" min="0" max="85" step="1" value="0" />
+						<p>
+							Leave 0° if unknown. Otherwise use the star in your frame closest to the celestial
+							equator (0–85°). This is a sky coordinate, not your latitude.
+						</p>
+					</details>
+					<p id="star-error" role="alert"></p>
+				</div>
+				<div class="star-output" aria-live="polite">
+					<span class="eyebrow">PIXEL DRIFT ESTIMATE</span
+					><strong id="star-limit" class="star-number">—</strong>
+					<p class="camera-time"><span>Try on camera</span> <strong id="star-camera">—</strong></p>
+					<p class="tool-hint">
+						Rounded down to an example camera setting. Take a test photo and check the stars.
+					</p>
+					<div class="star-comparison">
+						<div>
+							<span>500 rule</span><strong id="star-500">—</strong
+							><small id="star-500-drift"></small>
+						</div>
+						<div>
+							<span>Pixel pitch</span><strong id="star-pitch">—</strong
+							><small id="star-crop"></small>
+						</div>
+					</div>
+					<div id="night-preview" class="night-preview">
+						<div class="night-preview-heading">
+							<h3>Night-sky preview</h3>
+							<div>
+								<button id="night-animate" aria-pressed="false">Animate sky</button
+								><button id="night-motion" aria-pressed="true">Motion ×20</button>
+							</div>
+						</div>
+						<div class="night-frame">
+							<canvas
+								id="night-scene"
+								aria-label="Night landscape with a stationary foreground and stars rotating around a celestial pole"
+							></canvas
+							><span class="night-preview-tag">ILLUSTRATIVE PREVIEW</span>
+						</div>
+						<div class="night-presets" aria-label="Preview exposure presets">
+							<button data-night-time="pixel" aria-pressed="true">Pixel estimate</button
+							><button data-night-time="500" aria-pressed="false">500 rule</button
+							><button data-night-time="long" aria-pressed="false">60 s</button>
+						</div>
+						<label class="night-exposure-label" for="night-exposure"
+							>Preview exposure <output id="night-exposure-value">6 s</output></label
+						><input id="night-exposure" type="range" min="0" max="100" step="0.1" value="50" />
+						<p class="tool-hint">
+							Conceptual view around a celestial pole. Trail angles ×20 when enabled; animation
+							playback ×600. The foreground stays still. Brightness is held constant.
+						</p>
+					</div>
+				</div>
+			</div>
+			<details class="explain-more star-explanation">
+				<summary>How the estimate works</summary>
+				<p>
+					Earth’s rotation moves stars across the sensor. This local, small-angle model converts
+					that motion into pixels using focal length, estimated pixel pitch and declination. Square
+					pixels and the full active sensor area are assumed.
+				</p>
+				<p>
+					<code>p = 1000 × √(A / M)</code><br /><code>t = P × (p / 1000) / (f × ω × cos δ)</code
+					><br /><code>ω = 2π / 86164.0905 rad/s</code>
+				</p>
+				<p>
+					A: sensor area (mm²), M: pixel count, P: allowed pixel movement, p: pixel pitch (µm), f:
+					focal length (mm), δ: declination.
+				</p>
+				<p>
+					The estimate applies near the image center. Very wide-angle corners may trail more.
+					Aperture changes star size and brightness but not the geometric movement used here. Focus,
+					lens aberrations, noise and viewing size also affect the result.
+				</p>
+				<p>
+					The 500 rule uses 500 ÷ (focal length × diagonal crop factor). It ignores pixel resolution
+					and can allow visible trails. The pixel limit is a personal tolerance, not a guarantee of
+					pinpoint stars.
+				</p>
+				<a
+					class="source-link"
+					href="https://www.lonelyspeck.com/advanced-astrophotography-shutter-time-calculator/"
+					target="_blank"
+					rel="noreferrer"
+					>Lonely Speck · star motion and pixel tolerance ↗</a
+				><br /><a
+					class="source-link"
+					href="https://www.photopills.com/calculators/spotstars"
+					target="_blank"
+					rel="noreferrer"
+					>PhotoPills · 500 rule and its limits ↗</a
+				>
+			</details>
+		</section>
+	</section>
+</div>

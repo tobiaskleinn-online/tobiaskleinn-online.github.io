@@ -8,7 +8,18 @@ import globals from 'globals';
 export default [
 	js.configs.recommended,
 	{
-		ignores: ['dist/**', '.astro/**', 'node_modules/**', '.cache/**'],
+		ignores: [
+			'dist/**',
+			'.astro/**',
+			'node_modules/**',
+			'.cache/**',
+			'public/camera-physics/**',
+			'design-guide/**',
+		],
+	},
+	{
+		files: ['scripts/**/*.mjs', 'tests/**/*.mjs'],
+		languageOptions: { globals: globals.node },
 	},
 	{
 		files: ['**/*.ts'],

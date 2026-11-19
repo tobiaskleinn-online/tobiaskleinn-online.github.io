@@ -157,6 +157,7 @@ const createImageDataFor = (imagePath: string, img: GalleryImage): Image => {
 	}
 
 	return {
+		path: img.path,
 		src: imageModule.default,
 		title: img.meta.title,
 		description: img.meta.description,

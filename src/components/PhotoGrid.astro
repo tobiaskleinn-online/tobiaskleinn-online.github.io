@@ -1,56 +1,49 @@
 ---
-import 'glightbox/dist/css/glightbox.css';
-import '../styles/glightbox-custom.css';
-import { Image } from 'astro:assets';
-import type { Image as ImageType } from '../data/galleryData';
-
+import justifiedLayout from 'justified-layout';
+import PhotoCard from './PhotoCard.astro';
+import type { Image } from '../data/galleryData';
 interface Props {
-	images: ImageType[];
+	images: Image[];
 }
-
 const { images } = Astro.props;
-function formatShutterSpeed(value: number) {
-	if (!Number.isFinite(value) || value <= 0) return '';
-
-	const tidy = (n: number) => Number(n.toFixed(2));
-
-	return value > 1 ? `1/${tidy(value)} s` : `${tidy(1 / value)} s`;
-}
+// A complete initial layout is rendered at build time, even without JavaScript.
+// The browser refines this geometry for its exact width without loading images.
+const width = 1200;
+const layout = justifiedLayout(
+	images.map((image) => ({ width: image.src.width, height: image.src.height })),
+	{
+		containerWidth: width,
+		containerPadding: 0,
+		targetRowHeight: 300,
+		boxSpacing: 10,
+	},
+);
 ---
 
-<section id="photo-grid" class="relative w-full mx-auto overflow-hidden">
-	{
-		images.map((image) => (
-			<a
-				href={image.src.src}
-				class="photo-item glightbox absolute transition-transform hover:scale-[1.02] hover:z-10"
-				data-gallery="gallery1"
-				data-type="image"
-				data-glightbox={`title: ${image.title}; description: ${[
-					image.description,
-					image.exif?.model,
-					image.exif?.focalLength ? `${image.exif.focalLength}mm` : null,
-					image.exif?.fNumber ? `f/${image.exif.fNumber}` : null,
-					image.exif?.shutterSpeed ? formatShutterSpeed(image.exif.shutterSpeed) : null,
-					image.exif?.iso ? `ISO ${image.exif.iso}` : null,
-				]
-					.filter(Boolean)
-					.join(' · ')}`}
-			>
-				<Image
-					src={image.src}
-					quality={75}
-					format="webp"
-					width={image.src.width}
-					height={image.src.height}
-					class="w-full h-full object-cover rounded-sm shadow-sm hover:shadow-lg transition-shadow"
-					alt={image.title}
-				/>
-			</a>
-		))
-	}
-</section>
-
-<script>
-	import '../scripts/photo-grid';
-</script>
+{
+	images.length ? (
+		<div
+			class="photo-grid justified-gallery"
+			aria-label="Photo gallery"
+			style={`aspect-ratio:${width}/${layout.containerHeight}`}
+		>
+			{images.map((image, index) => {
+				const box = layout.boxes[index];
+				const style = `left:${(box.left / width) * 100}%;top:${(box.top / layout.containerHeight) * 100}%;width:${(box.width / width) * 100}%;height:${(box.height / layout.containerHeight) * 100}%;`;
+				return (
+					<PhotoCard
+						image={image}
+						style={style}
+						showCaption={false}
+						priority={index < 3}
+						sizes="(max-width: 650px) 90vw, (max-width: 900px) 50vw, 40vw"
+					/>
+				);
+			})}
+		</div>
+	) : (
+		<p class="empty-gallery">
+			Photographs are on their way. Explore another collection in the meantime.
+		</p>
+	)
+}

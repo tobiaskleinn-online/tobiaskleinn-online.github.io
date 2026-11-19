@@ -1,0 +1,130 @@
+---
+import { ChevronLeft, ChevronRight } from 'lucide-astro';
+import PhotoCard from './PhotoCard.astro';
+import type { Image } from '../data/galleryData';
+interface Props {
+	images: Image[];
+}
+const { images } = Astro.props;
+---
+
+{
+	images.length > 0 && (
+		<div class="featured-carousel" data-featured-carousel>
+			<div
+				class="featured-track"
+				id="featured-track"
+				role="region"
+				aria-roledescription="carousel"
+				aria-label="Selected photographs"
+				tabindex="0"
+			>
+				{images.map((image) => (
+					<PhotoCard
+						image={image}
+						showCaption={false}
+						style={`--image-ratio:${image.src.width / image.src.height}`}
+						sizes="(max-width: 650px) 85vw, 60vw"
+					/>
+				))}
+			</div>
+			<div class="carousel-toolbar">
+				<p class="carousel-position" aria-live="polite" aria-atomic="true">
+					<span data-current-photo>1</span> / {images.length}
+				</p>
+				<div class="carousel-controls">
+					<>
+						<button
+							class="carousel-button"
+							type="button"
+							data-previous
+							aria-controls="featured-track"
+							aria-label="Previous selected photograph"
+							disabled
+						>
+							<ChevronLeft size={18} aria-hidden="true" />
+						</button>
+						<button
+							class="carousel-button"
+							type="button"
+							data-next
+							aria-controls="featured-track"
+							aria-label="Next selected photograph"
+							disabled={images.length < 2}
+						>
+							<ChevronRight size={18} aria-hidden="true" />
+						</button>
+					</>
+				</div>
+			</div>
+		</div>
+	)
+}
+<script>
+	document.querySelectorAll<HTMLElement>('[data-featured-carousel]').forEach((carousel) => {
+		const track = carousel.querySelector<HTMLElement>('.featured-track')!;
+		const cards = Array.from(track.querySelectorAll<HTMLElement>('.photo-card'));
+		const previous = carousel.querySelector<HTMLButtonElement>('[data-previous]')!;
+		const next = carousel.querySelector<HTMLButtonElement>('[data-next]')!;
+		const current = carousel.querySelector<HTMLElement>('[data-current-photo]')!;
+		const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+		let position = 0;
+		function update() {
+			if (!cards.length) return;
+			const left = track.getBoundingClientRect().left;
+			position = cards.reduce(
+				(best, card, i) =>
+					Math.abs(card.getBoundingClientRect().left - left) <
+					Math.abs(cards[best].getBoundingClientRect().left - left)
+						? i
+						: best,
+				0,
+			);
+			const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+			const right = track.getBoundingClientRect().right;
+			const visible = cards.flatMap((card, i) => {
+				const box = card.getBoundingClientRect();
+				return box.right > left + 2 && box.left < right - 2 ? [i + 1] : [];
+			});
+			current.textContent =
+				visible.length > 1
+					? `${visible[0]}–${visible[visible.length - 1]}`
+					: String(visible[0] ?? 1);
+			previous.disabled = track.scrollLeft < 2;
+			next.disabled = atEnd;
+		}
+		function go(index: number) {
+			const target = cards[Math.max(0, Math.min(cards.length - 1, index))];
+			if (!target) return;
+			const delta = target.getBoundingClientRect().left - track.getBoundingClientRect().left;
+			track.scrollTo({
+				left: track.scrollLeft + delta,
+				behavior: reducedMotion.matches ? 'instant' : 'smooth',
+			});
+		}
+		previous.addEventListener('click', () => go(position - 1));
+		next.addEventListener('click', () => go(position + 1));
+		track.addEventListener('scroll', update, { passive: true });
+		track.addEventListener('keydown', (event) => {
+			// Let focused photograph links retain Enter and normal browser navigation.
+			if (event.key === 'ArrowRight') {
+				event.preventDefault();
+				go(position + 1);
+			}
+			if (event.key === 'ArrowLeft') {
+				event.preventDefault();
+				go(position - 1);
+			}
+			if (event.key === 'Home') {
+				event.preventDefault();
+				go(0);
+			}
+			if (event.key === 'End') {
+				event.preventDefault();
+				go(cards.length - 1);
+			}
+		});
+		if (typeof ResizeObserver !== 'undefined') new ResizeObserver(update).observe(track);
+		update();
+	});
+</script>

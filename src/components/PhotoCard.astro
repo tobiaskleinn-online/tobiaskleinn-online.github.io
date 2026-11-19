@@ -1,0 +1,98 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { Image as GalleryImage } from '../data/galleryData';
+interface Props {
+	image: GalleryImage;
+	priority?: boolean;
+	sizes?: string;
+	showCaption?: boolean;
+	style?: string;
+	hero?: boolean;
+}
+const {
+	image,
+	priority = false,
+	showCaption = true,
+	style,
+	hero = false,
+	sizes = '(min-width: 1296px) 390px, (max-width: 390px) 90vw, (max-width: 650px) 45vw, 30vw',
+} = Astro.props;
+const lightbox = await getImage({
+	src: image.src,
+	width: Math.min(image.src.width, 1800),
+	format: 'webp',
+	quality: 86,
+});
+const maxPreviewWidth = hero ? 1600 : 1200;
+const widths = [400, 800, 1200, ...(hero ? [1600] : [])].filter(
+	(width) => width < Math.min(image.src.width, maxPreviewWidth),
+);
+widths.push(Math.min(image.src.width, maxPreviewWidth));
+function shutter(value?: number) {
+	if (!value || !Number.isFinite(value) || value <= 0) return null;
+	return value >= 1 ? `1/${Number(value.toFixed(2))} s` : `${Number((1 / value).toFixed(2))} s`;
+}
+const details = [
+	image.description,
+	image.exif?.model,
+	image.exif?.focalLength ? `${image.exif.focalLength}mm` : null,
+	image.exif?.fNumber ? `f/${image.exif.fNumber}` : null,
+	shutter(image.exif?.shutterSpeed),
+	image.exif?.iso ? `ISO ${image.exif.iso}` : null,
+]
+	.filter(Boolean)
+	.join(' · ');
+// GLightbox renders titles and descriptions as HTML; keep imported metadata as text.
+const escape = (value: string) =>
+	value
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
+const category = image.collections.find((collection) => collection !== 'featured');
+---
+
+<figure
+	class="photo-card"
+	style={style}
+	data-width={image.src.width}
+	data-height={image.src.height}
+>
+	<a
+		href={lightbox.src}
+		class="glightbox"
+		data-gallery={hero ? 'hero' : 'photography'}
+		data-title={escape(image.title)}
+		data-description={escape(details)}
+		data-type="image"
+		aria-label={`View ${image.title}`}
+	>
+		<Image
+			src={image.src}
+			widths={widths}
+			sizes={sizes}
+			width={Math.min(800, image.src.width)}
+			format="webp"
+			quality={78}
+			alt={image.title}
+			loading={priority ? 'eager' : 'lazy'}
+			fetchpriority={priority ? 'high' : 'auto'}
+			decoding="async"
+			class="photo-frame"
+		/>
+	</a>
+	{
+		showCaption && (
+			<figcaption>
+				<>
+					<span>{image.title}</span>
+					<span class="photo-category">{category}</span>
+				</>
+			</figcaption>
+		)
+	}
+</figure>
+<script>
+	import '../scripts/photo-grid';
+</script>

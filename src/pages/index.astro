@@ -1,17 +1,72 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import LandingHero from '../components/LandingHero-1.astro';
-import FeaturedGallery from '../components/FeaturedGallery.astro';
-import FeaturedWorkScroll from '../components/FeaturedWorkScroll.astro';
+import PhotoCard from '../components/PhotoCard.astro';
+import FeaturedCarousel from '../components/FeaturedCarousel.astro';
+import { getImages } from '../data/imageStore';
+import { homepagePhotos } from '../data/homepage.config';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const images = await getImages();
+const curated = homepagePhotos.flatMap((path) => images.find((image) => image.path === path) ?? []);
+const selected = [
+	...curated,
+	...images.filter((image) => image.collections.includes('featured') && !curated.includes(image)),
+];
 ---
 
-<MainLayout>
-	<section class="relative min-h-screen items-center flex py-20 md:py-16 overflow-hidden">
-		<LandingHero />
-		<FeaturedWorkScroll />
-	</section>
-
-	<section class="featured-section py-20">
-		<FeaturedGallery />
+<MainLayout hero={Boolean(selected[0])}>
+	{
+		selected[0] && (
+			<section class="photo-hero" aria-labelledby="home-heading">
+				<div class="hero-photograph">
+					<PhotoCard image={selected[0]} priority hero showCaption={false} sizes="100vw" />
+				</div>
+				<div class="hero-shade" aria-hidden="true" />
+				<div class="hero-content shell">
+					<div class="eyebrow">Photography by Tobias Klein</div>
+					<h1 id="home-heading">
+						The art of
+						<br />
+						looking closer.
+					</h1>
+					<p>
+						Finding beauty in the quietly overlooked.
+						<br />
+						Places, details, and fleeting moments.
+					</p>
+					<a class="text-link" href={`${base}/collections/`}>
+						Explore photography
+					</a>
+				</div>
+				<div class="hero-bottom shell">
+					<>
+						<span>{selected[0].title}</span>
+						<a href="#selected-work">Selected work</a>
+					</>
+				</div>
+			</section>
+		)
+	}
+	<div class="shell">
+		<section class="selected-section" id="selected-work" aria-labelledby="selected-heading">
+			<div class="section-heading">
+				<div>
+					<div class="eyebrow">A few moments worth noticing</div><h2 id="selected-heading">
+						Selected work
+					</h2>
+				</div><a class="text-link" href={`${base}/collections/`}>All photographs</a>
+			</div>
+			<FeaturedCarousel images={selected} />
+		</section>
+	</div>
+	<section class="projects-area" id="projects" aria-labelledby="project-heading">
+		<div class="shell">
+			<div class="eyebrow">Projects</div><h2 id="project-heading">Camera &amp; optics</h2>
+			<p class="project-description">Explore how lenses and camera settings shape an image.</p>
+			<nav class="project-entry-links" aria-label="Camera & optics">
+				<a class="text-link" href={`${base}/photography/#lab`}>Camera Lab</a>
+				<a class="text-link" href={`${base}/photography/#learn`}>Basics</a>
+				<a class="text-link" href={`${base}/photography/#tools`}>Tools</a>
+			</nav>
+		</div>
 	</section>
 </MainLayout>

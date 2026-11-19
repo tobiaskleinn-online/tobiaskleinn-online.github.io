@@ -1,0 +1,232 @@
+@import './camera-physics-import.css';
+
+/* Portfolio adapter. Keep the upstream optical models separate from site chrome. */
+.camera-app {
+	--surface: var(--paper);
+	--muted: var(--quiet);
+	--accent: var(--ink);
+	--accent-soft: var(--soft);
+	--on-accent: var(--paper);
+	--focus: #5184c5;
+	--depth: #d6aa51;
+	--object: #b87841;
+	--foreground: #588a76;
+	--bg: var(--paper);
+	--radius: 0px;
+	--shadow: none;
+	--space: 24px;
+	--controls-height: 120px;
+	font: inherit;
+	color: var(--ink);
+	background: var(--paper);
+	padding-bottom: 3rem;
+}
+.camera-app .camera-main {
+	max-width: none;
+	padding: 0;
+	margin: 0;
+}
+.camera-app .module-header {
+	flex-wrap: wrap;
+	max-width: none;
+	padding: 1.5rem 0;
+	margin: 0;
+}
+.camera-app h1 {
+	font-size: clamp(2.7rem, 5vw, 4rem);
+	font-weight: 400;
+	line-height: 1.08;
+	letter-spacing: -0.045em;
+}
+.camera-app h2 {
+	font-weight: 400;
+	letter-spacing: -0.035em;
+}
+.camera-app h3 {
+	font-weight: 500;
+}
+.camera-app :is(.learning-intro p, .intro p, .lesson > p, .subject-card p) {
+	font-size: 1rem;
+	line-height: 1.65;
+}
+.camera-app .eyebrow {
+	font-size: 0.75rem;
+	font-weight: 400;
+	letter-spacing: 0.15em;
+}
+.camera-app :is(button, select, input, label) {
+	font-family: inherit;
+}
+.camera-app
+	:is(
+		.module-nav button,
+		.topic-nav button,
+		.learn-group-tabs button,
+		.subject-links a,
+		.primary,
+		.control label,
+		.tool-heading p
+	) {
+	font-size: 0.875rem;
+}
+.camera-app .subject-number {
+	display: none;
+}
+.camera-app .subject-card {
+	border-radius: 0;
+	padding: 2rem;
+	box-shadow: none;
+}
+.camera-app .subject-camera {
+	border-top-width: 1px;
+}
+.camera-app .subject-card .subject-detail {
+	font-size: 0.875rem;
+}
+.camera-app :is(.learning-home, .intro) {
+	padding-top: 2.5rem;
+}
+.camera-app .module-nav {
+	flex: 0 0 auto;
+	max-width: 100%;
+	background: none;
+	padding: 0.25rem;
+	border-radius: 0;
+	gap: 0.5rem;
+}
+.camera-app .module-nav .nav {
+	flex: 0 0 auto;
+	min-height: 44px;
+	padding: 0.65rem 1rem;
+	background: transparent;
+	border-radius: 0;
+	box-shadow: none;
+	border-bottom: 1px solid transparent;
+}
+.camera-app .module-nav .nav.active {
+	border-bottom-color: var(--ink);
+	background: transparent;
+	color: var(--ink);
+}
+.camera-app :is(.subject-links .primary, .lesson .primary) {
+	border-radius: 0;
+	padding: 0.65rem 1rem;
+}
+.camera-app .camera-module-footer {
+	border-top: 1px solid var(--line);
+	justify-content: flex-start;
+	padding: 1.5rem 0;
+}
+.camera-app .camera-module-footer button {
+	padding: 0.5rem 0;
+	font-size: 0.875rem;
+	background: none;
+	border: 0;
+}
+.camera-app #camera-controls {
+	border-radius: 0;
+	box-shadow: none;
+}
+.camera-app .integrated-presets {
+	border: 0;
+	padding: 0.75rem 0;
+}
+.camera-app :is(.integrated-presets button, .focal-shortcuts button, select, input[type='number']) {
+	border-radius: 0;
+}
+.camera-app .integrated-presets button {
+	min-height: 40px;
+}
+/* Override legacy dark UI panels; explanatory colors inside diagrams remain semantic. */
+html[data-theme]
+	.camera-app
+	:is(
+		.lesson,
+		.depth-panel,
+		.diagram-card,
+		.results,
+		.equiv-layout,
+		select,
+		input[type='number'],
+		.compare-toggle,
+		.focal-shortcuts button,
+		.presets button,
+		.effect-strength button,
+		.compare-explanation
+	) {
+	background: var(--surface) !important;
+	border-color: var(--line);
+}
+html[data-theme]
+	.camera-app
+	:is(
+		.module-nav,
+		.segmented,
+		.scene-distances,
+		.diagram-visual,
+		.equiv-form,
+		.takeaway,
+		.aperture-comparison,
+		.blur-readout,
+		.effect-notice
+	) {
+	background: var(--soft) !important;
+}
+html[data-theme] .camera-app :is(.nav.active, .segmented .selected) {
+	color: var(--ink) !important;
+}
+html[data-theme] .camera-app :is(.primary, .compare-toggle.selected) {
+	color: var(--on-accent) !important;
+	background: var(--accent) !important;
+}
+html[data-theme]
+	.camera-app
+	:is(
+		.nav,
+		.control label,
+		.lesson p,
+		.intro p,
+		.explain-more,
+		.diagram-card p,
+		.results span,
+		.results small,
+		.topic-nav button,
+		.learn-group-tabs button,
+		.effect-notice,
+		.eq-note
+	) {
+	color: var(--muted) !important;
+}
+@media (max-width: 760px) {
+	.camera-app .module-header {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	.camera-app .subject-card {
+		padding: 1.5rem;
+	}
+	.camera-app :is(.learning-home, .intro) {
+		padding-top: 1.75rem;
+	}
+}
+@media (max-width: 420px) {
+	.camera-app .module-identity strong {
+		font-size: 1.2rem;
+	}
+	.camera-app .module-nav {
+		width: 100%;
+	}
+	.camera-app .module-nav .nav {
+		flex: 1 0 auto;
+	}
+}
+.camera-app.shell {
+	margin-inline: auto;
+}
+.camera-app :is(.intro, .learning-intro) h1 {
+	font-size: clamp(2.7rem, 5vw, 4rem);
+	font-weight: 400;
+}
+.camera-app .subject-camera {
+	border-top-color: var(--line);
+}

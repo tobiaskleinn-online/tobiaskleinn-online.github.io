@@ -2,3 +2,12 @@
 build
 coverage
 package-lock.json
+
+# Imported camera snapshot and local/generated artifacts
+public/camera-physics/
+src/data/camera-physics.html
+src/styles/camera-physics-import.css
+design-guide/
+output/
+dist/
+.astro/
