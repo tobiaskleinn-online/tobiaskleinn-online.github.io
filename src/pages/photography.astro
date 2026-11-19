@@ -1,8 +1,11 @@
 ---
+import { createHash } from 'node:crypto';
+import cameraRuntime from '../../public/camera-physics/app.js?raw';
 import MainLayout from '../layouts/MainLayout.astro';
 import '../styles/camera-physics.css';
 import cameraBody from '../data/camera-physics.html?raw';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const cameraVersion = createHash('sha256').update(cameraRuntime).digest('hex').slice(0, 12);
 ---
 
 <MainLayout
@@ -10,5 +13,5 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 	description="Explore camera settings, lenses, focus, and depth of field with interactive photography lessons and tools."
 >
 	<div class="shell camera-app" set:html={cameraBody} />
-	<script is:inline type="module" src={`${base}/camera-physics/app.js`}></script>
+	<script is:inline type="module" src={`${base}/camera-physics/app.js?v=${cameraVersion}`}></script>
 </MainLayout>
