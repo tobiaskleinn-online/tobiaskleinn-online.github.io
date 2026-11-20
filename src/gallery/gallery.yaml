@@ -10,6 +10,34 @@ collections:
   - id: Travel
     name: Travel
 images:
+  - path: Wildlife/DSC01127.jpg
+    meta:
+      title: Caught between stems
+      description: ''
+      collections:
+        - Wildlife
+    exif:
+      captureDate: 2026-11-15T16:46:58.000Z
+      fNumber: 7.1
+      focalLength: 50
+      iso: 3200
+      model: ILCE-6700
+      shutterSpeed: 80
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
+  - path: Landscape/DSC00912.jpg
+    meta:
+      title: You dont have to take the crossing
+      description: ''
+      collections:
+        - Landscape
+    exif:
+      captureDate: 2026-10-31T17:18:13.000Z
+      fNumber: 6.3
+      focalLength: 50
+      iso: 3200
+      model: ILCE-6700
+      shutterSpeed: 100
+      lensModel: 18-50mm F2.8 DC DN | Contemporary 021
   - path: Automotive/DSC00763.jpg
     meta:
       title: 992 Turbo S
@@ -201,7 +229,6 @@ images:
       description: ''
       collections:
         - Landscape
-        - featured
     exif:
       captureDate: 2026-09-02T19:09:43.000Z
       fNumber: 8
